@@ -5,7 +5,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Jewells By Queens | Timeless Luxury</title>
 
-<!-- Fonts & Icons -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Cormorant+Garamond:wght@400;500;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -184,8 +183,8 @@ nav {
     background-size: cover;
 }
 
-.hero-content h1 {
-    font-size: 4rem;
+.hero-content h1{
+    font-size:clamp(2rem,8vw,4rem);
     font-weight: 600;
     letter-spacing: 4px;
     color: var(--dark);
@@ -455,10 +454,29 @@ nav {
     position: relative;
 }
 
-.modal img {
+/* ZOOM EFFECT STYLES */
+.modal-image-wrapper {
     width: 50%;
     border-radius: 15px;
+    overflow: hidden;
+    position: relative;
+    cursor: zoom-in;
+    background: #fff;
+    touch-action: none; /* Prevents the page from scrolling while dragging to zoom */
+}
+
+.modal-image-wrapper img {
+    width: 100%;
+    height: 100%;
     object-fit: cover;
+    transition: transform 0.1s ease-out;
+    transform-origin: center center;
+}
+
+/* Desktop Hover and Mobile Touch Class */
+.modal-image-wrapper:hover img,
+.modal-image-wrapper img.zoomed {
+    transform: scale(2.5); /* Adjust this value to increase/decrease zoom level */
 }
 
 .close-modal {
@@ -467,6 +485,7 @@ nav {
     font-size: 1.5rem;
     cursor: pointer;
     color: #888;
+    z-index: 10;
 }
 
 #toast {
@@ -495,6 +514,36 @@ footer {
     border-top: 1px solid #eee;
     margin-top: 50px;
 }
+.quantity-controls{
+    display:flex;
+    align-items:center;
+    gap:15px;
+    margin-top:10px;
+}
+
+.qty-btn{
+    width:20px;
+    height:20px;
+    border:none;
+    border-radius:50%;
+    background:#B08D57;
+    color:white;
+    font-size:1.4rem;
+    font-weight:bold;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+.qty-btn:hover{
+    background:#6B4423;
+}
+
+.qty-number{
+    font-size:1.2rem;
+    font-weight:600;
+    min-width:30px;
+    text-align:center;
+}
 
 /* --- RESPONSIVE --- */
 @media(max-width: 768px) {
@@ -520,7 +569,7 @@ footer {
     .hero-content h1 { font-size: 2.2rem; }
     .about { grid-template-columns: 1fr; }
     .modal { flex-direction: column; }
-    .modal img { width: 100%; height: 250px; }
+    .modal-image-wrapper { width: 100%; height: 250px; }
     .card-content .btn { width: 100%; }
     .checkout-area { text-align: center; }
 
@@ -529,7 +578,6 @@ footer {
 </head>
 <body>
 
-<!-- HEADER -->
 <header>
     <div class="logo-wrap" onclick="switchView('home')">
         <div class="logo-circle">JQ</div>
@@ -555,14 +603,21 @@ footer {
     </nav>
 </header>
 
-<!-- NOTIFICATION TOAST -->
 <div id="toast">Item added!</div>
 
-<!-- QUICK VIEW MODAL -->
 <div class="modal-overlay" id="quickViewModal">
     <div class="modal">
         <i class="fas fa-times close-modal" onclick="closeModal()"></i>
-        <img id="modalImg" src="" alt="Product">
+        
+        <div class="modal-image-wrapper" id="zoomWrapper" 
+             onmousemove="zoomImage(event)" 
+             onmouseleave="resetZoom()"
+             ontouchstart="startTouchZoom(event)"
+             ontouchmove="moveTouchZoom(event)"
+             ontouchend="resetZoom()">
+            <img id="modalImg" src="" alt="Product">
+        </div>
+        
         <div style="flex:1; display:flex; flex-direction:column; justify-content:center;">
             <h2 id="modalTitle" style="font-size: 2.5rem; color: var(--dark); margin-bottom: 10px;">Title</h2>
             <p id="modalPrice" class="price" style="font-size: 1.5rem;">$0</p>
@@ -572,9 +627,6 @@ footer {
     </div>
 </div>
 
-<!-- ================= VIEWS ================= -->
-
-<!-- 1. HOME VIEW -->
 <div id="view-home" class="view active">
     <section class="hero">
         <div class="hero-content">
@@ -587,33 +639,28 @@ footer {
     <section class="section">
         <h2 class="title">Featured Highlights</h2>
         <div class="grid" id="featuredGrid">
-            <!-- Populated by JS -->
-        </div>
+            </div>
     </section>
 </div>
 
-<!-- 2. SHOP VIEW -->
 <div id="view-shop" class="view section">
     <h2 class="title">Our Collections</h2>
    <div class="filters">
     <button class="filter-btn active" onclick="filterProducts('all')">All</button>
     <button class="filter-btn" onclick="filterProducts('ring')">Rings</button>
-    <button class="filter-btn" onclick="filterProducts('necklace')">Necklaces</button>
+    <button class="filter-btn" onclick="filterProducts('pendant')">Pendant Sets</button>
     <button class="filter-btn" onclick="filterProducts('earring')">Earrings</button>
-    <button class="filter-btn" onclick="filterProducts('bracelet')">Bracelets</button>
+  <button class="filter-btn" onclick="filterProducts('bangle')">Bangles</button>
     <button class="filter-btn" onclick="filterProducts('set')">Sets</button>
 </div>
     <div class="grid" id="shopGrid">
-        <!-- Populated by JS -->
-    </div>
+        </div>
 </div>
 
-<!-- 3. CART VIEW -->
 <div id="view-cart" class="view section">
     <h2 class="title">Shopping Bag</h2>
     <div style="max-width: 800px; margin: 0 auto;" id="cartContainer">
-        <!-- Cart Items JS -->
-    </div>
+        </div>
     <div class="checkout-area" style="max-width: 800px; margin: 30px auto 0;">
     <h3 class="cart-total">
     Total: ₹<span id="cartTotal">0</span>
@@ -624,19 +671,15 @@ footer {
     </div>
 </div>
 
-<!-- 4. WISHLIST VIEW -->
 <div id="view-wishlist" class="view section">
     <h2 class="title">Your Wishlist</h2>
     <div style="max-width: 800px; margin: 0 auto;" id="wishlistContainer">
-        <!-- Wishlist Items JS -->
-    </div>
+        </div>
 </div>
 
-<!-- 5. ABOUT VIEW -->
 <div id="view-about" class="view section">
     <div class="about" style="max-width: 1000px; margin: 0 auto;">
-        <!-- Replaced with your local image -->
-       <img src="background.jpeg" alt="About Us">
+        <img src="background.jpeg" alt="About Us">
         <div>
             <h2 class="title" style="text-align: left; margin-bottom: 20px;">Our Story</h2>
             <p style="color: #555; line-height: 1.8;">
@@ -646,7 +689,6 @@ footer {
     </div>
 </div>
 
-<!-- CONTACT / ORDER FORM -->
 <div id="view-contact" class="view section">
     <h2 class="title">Order on WhatsApp</h2>
 
@@ -669,25 +711,26 @@ footer {
         </button>
     </form>
 </div>
-<!-- FOOTER -->
 <footer>
     <p>© 2026 Jewells By Queens. All Rights Reserved.</p>
 </footer>
 
-<!-- ================= JAVASCRIPT LOGIC ================= -->
 <script>
 // --- PRODUCT DATA WITH LOCAL IMAGES ---
 const products = [
-   { id: 3, name: "Diamond Earrings", price: 249, category: "earring", img: "ER 1.jpeg" },
-{ id: 7, name: "Pearl Drop Earrings", price: 249, category: "earring", img: "ER 2.jpeg" },
-{ id: 10, name: "Vintage Drop Earrings", price: 249, category: "earring", img: "ER 3.jpeg" },
-{ id: 12, name: "Crystal Earrings", price: 249, category: "earring", img: "ER 4.jpeg" },
-{ id: 13, name: "Royal Stud Earrings", price: 249, category: "earring", img: "ER 5.jpeg" },
-{ id: 14, name: "Luxury Drop Earrings", price: 249, category: "earring", img: "ER 6.jpeg" },
-{ id: 1, name: "Bow Bracelet", price: 999, category: "bracelet", img: "BN 1.jpeg" },
-{ id: 2, name: "Elegant Bow Bracelet", price: 1499, category: "bracelet", img: "BN 2.jpeg" },
-{ id: 25, name: "Royal Bracelet", price: 999, category: "bracelet", img: "BN 3.jpeg" },
-{ id: 26, name: "Designer Bracelet", price: 999, category: "bracelet", img: "BN 4.jpeg" },
+   { id: 3, name: "Diamond Earrings", price: 199, category: "earring", img: "ER 1.jpeg" },
+{ id: 7, name: "Pearl Drop Earrings", price: 199, category: "earring", img: "ER 2.jpeg" },
+{ id: 10, name: "Vintage Drop Earrings", price: 199, category: "earring", img: "ER 3.jpeg" },
+{ id: 12, name: "Crystal Earrings", price: 199, category: "earring", img: "ER 4.jpeg" },
+{ id: 13, name: "Royal Stud Earrings", price: 199, category: "earring", img: "ER 5.jpeg" },
+{ id: 14, name: "Luxury Drop Earrings", price: 199, category: "earring", img: "ER 6.jpeg" },
+{ id: 1, name: "Bow Bangle", price: 299,category: "bangle", img: "BN 1.jpeg" },
+
+{ id: 2, name: "Elegant Bow Bangle", price: 299, category: "bangle", img: "BN 2.jpeg" },
+
+{ id: 25, name: "Royal Bangle", price: 299, category: "bangle", img: "BN 3.jpeg" },
+
+{ id: 26, name: "Designer Bangle", price: 299, category: "bangle", img: "BN 4.jpeg" },
 { id: 15, name: "Royal Bridal Set", price: 1499, category: "set", img: "AD SET 1.jpeg" },
 { id: 16, name: "Pearl Jewellery Set", price: 1499, category: "set", img: "AD SET 2.jpeg" },
 { id: 17, name: "Designer Bridal Set", price: 1499, category: "set", img: "AD SET 3.jpeg" },
@@ -701,9 +744,11 @@ const products = [
 { id: 4, name: "Royal Ring", price: 1299, category: "ring", img: "WhatsApp Image 2026-06-09 at 4.32.11 PM.jpeg" },
 { id: 6, name: "Sapphire Halo Ring", price: 599, category: "ring", img: "WhatsApp Image 2.jpeg" },
 { id: 9, name: "Classic Band", price: 499, category: "ring", img: "WhatsApp Image 2026-06-06 PM.jpeg" },
-{ id: 5, name: "Queen Necklace", price: 899, category: "necklace", img: "WhatsApp Imag.jpeg" },
-{ id: 8, name: "Gold Chain", price: 1099, category: "necklace", img: "WhatsApp Image 2026-0.jpeg" },
-{ id: 11, name: "Statement Piece", price: 1599, category: "necklace", img: "WhatsApp Image 2026-06-08 at 4.46..jpeg" },
+{ id: 5, name: "Queen Pendant Set", price: 899, category: "pendant", img: "WhatsApp Imag.jpeg" },
+
+{ id: 8, name: "Golden Pendant Set", price: 1099, category: "pendant", img: "WhatsApp Image 2026-0.jpeg" },
+
+{ id: 11, name: "Luxury Pendant Set", price: 1599, category: "pendant", img: "WhatsApp Image 2026-06-08 at 4.46..jpeg" },
 
 ];
 
@@ -746,7 +791,7 @@ function generateCardHTML(product) {
     const heartClass = inWishlist ? 'fas' : 'far';
     
     return `
-        <div class="card">
+        <div class="card" id="product-${product.id}">
           <img src="${product.img}" alt="${product.name}" loading="lazy" onerror="this.src='https://via.placeholder.com/600x600?text=Image+Not+Found'">
             <div class="card-actions">
                 <button onclick="toggleWishlist(${product.id})" title="Wishlist">
@@ -802,32 +847,11 @@ function addToCart(id) {
     saveState();
     showToast(`${product.name} added to Bag!`);
 }
-function addToCart(id) {
-    const product = products.find(p => p.id === id);
 
-    const existing = cart.find(item => item.id === id);
-
-    if(existing) {
-        existing.quantity += 1;
-    } else {
-        cart.push({ ...product, quantity: 1 });
-    }
-
-    saveState();
-    showToast(`${product.name} added to Bag!`);
-}
 function buyNow(id) {
     buyNowProduct = products.find(p => p.id === id);
-
     // Open WhatsApp order form
     switchView('contact');
-}
-
-
-function buyNow(id) {
-    buyNowProduct = products.find(p => p.id === id);
-    switchView('contact');
-
 }
 
 function toggleWishlist(id) {
@@ -887,11 +911,36 @@ function renderCart() {
         total += item.price * item.quantity;
         return `
             <div class="list-item">
-                <img src="${item.img}" alt="${item.name}">
-                <div class="item-details">
-                    <h4>${item.name}</h4>
-                    <p style="color:var(--gold);">₹${item.price} x ${item.quantity}</p>
-                </div>
+               <img src="${item.img}" alt="${item.name}" 
+     onclick="goToProduct(${item.id})"
+     style="cursor:pointer;">
+
+<div class="item-details">
+    <h4 onclick="goToProduct(${item.id})"
+        style="cursor:pointer; color:#6B4423;">
+        ${item.name}
+    </h4>
+
+   <p style="color:var(--gold);">
+    ₹${item.price} each
+</p>
+
+    <div class="quantity-controls">
+        <button class="qty-btn"
+                onclick="decreaseQty(${item.id})">
+            −
+        </button>
+
+        <span class="qty-number">
+            ${item.quantity}
+        </span>
+
+        <button class="qty-btn"
+                onclick="increaseQty(${item.id})">
+            +
+        </button>
+    </div>
+</div>
                 <button class="remove-btn" onclick="removeFromCart(${item.id})"><i class="fas fa-trash"></i></button>
             </div>
         `;
@@ -977,10 +1026,16 @@ ${orderDetails}%0A
     // Reset Buy Now after order
     buyNowProduct = null;
 }
-// --- QUICK VIEW MODAL ---
+
+// --- QUICK VIEW MODAL & ZOOM LOGIC ---
 function openModal(id) {
     const product = products.find(p => p.id === id);
-    document.getElementById('modalImg').src = product.img;
+    const modalImg = document.getElementById('modalImg');
+    
+    // Reset zoom before opening
+    resetZoom();
+    modalImg.src = product.img;
+    
     document.getElementById('modalTitle').textContent = product.name;
     document.getElementById('modalPrice').textContent = `₹${product.price}`;
     document.getElementById('modalAddToCart').onclick = () => {
@@ -992,6 +1047,52 @@ function openModal(id) {
 
 function closeModal() {
     document.getElementById('quickViewModal').style.display = 'none';
+}
+
+// Master function to handle position calculation for both desktop and mobile
+function handleZoomPan(clientX, clientY) {
+    const wrapper = document.getElementById('zoomWrapper');
+    const img = document.getElementById('modalImg');
+    const rect = wrapper.getBoundingClientRect();
+    
+    const x = clientX - rect.left; 
+    const y = clientY - rect.top;  
+    
+    let xPercent = (x / rect.width) * 100;
+    let yPercent = (y / rect.height) * 100;
+    
+    // Safety guard to keep coordinates within the image bounds
+    if (xPercent < 0) xPercent = 0;
+    if (xPercent > 100) xPercent = 100;
+    if (yPercent < 0) yPercent = 0;
+    if (yPercent > 100) yPercent = 100;
+    
+    img.style.transformOrigin = `${xPercent}% ${yPercent}%`;
+}
+
+// Desktop mouse tracking
+function zoomImage(e) {
+    handleZoomPan(e.clientX, e.clientY);
+}
+
+// Mobile touch tracking
+function startTouchZoom(e) {
+    const img = document.getElementById('modalImg');
+    img.classList.add('zoomed'); // Forces image scaling on mobile
+    handleZoomPan(e.touches[0].clientX, e.touches[0].clientY);
+}
+
+function moveTouchZoom(e) {
+    if (e.touches.length > 0) {
+        handleZoomPan(e.touches[0].clientX, e.touches[0].clientY);
+    }
+}
+
+// Resets zoom completely for both platforms
+function resetZoom() {
+    const img = document.getElementById('modalImg');
+    img.classList.remove('zoomed');
+    img.style.transformOrigin = 'center center';
 }
 
 // Close modal if clicked outside
@@ -1011,6 +1112,42 @@ function handleContact(e) {
     e.preventDefault();
     showToast("Message sent successfully! We will contact you soon.");
     e.target.reset();
+}
+
+function increaseQty(id){
+    const item = cart.find(product => product.id === id);
+    if(item){
+        item.quantity++;
+        saveState();
+    }
+}
+
+function decreaseQty(id){
+    const item = cart.find(product => product.id === id);
+    if(item){
+        item.quantity--;
+        if(item.quantity <= 0){
+            cart = cart.filter(product => product.id !== id);
+        }
+        saveState();
+    }
+}
+
+function goToProduct(id) {
+    switchView('shop');
+    setTimeout(() => {
+        const productCard = document.getElementById(`product-${id}`);
+        if(productCard){
+            productCard.scrollIntoView({
+                behavior: "smooth",
+                block: "center"
+            });
+            productCard.style.boxShadow = "0 0 25px #B08D57";
+            setTimeout(() => {
+                productCard.style.boxShadow = "";
+            }, 2500);
+        }
+    }, 300);
 }
 </script>
 
