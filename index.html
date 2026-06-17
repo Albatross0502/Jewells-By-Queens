@@ -1,798 +1,865 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Jewells By Queens | Timeless Luxury</title>
-
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Cormorant+Garamond:wght@400;500;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" media="print" onload="this.media='all'">
-<noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"></noscript>
-
-<style>
-/* --- BASE STYLES & VARIABLES --- */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-:root {
-    --gold: #B08D57;
-    --cream: #F8F4ED;
-    --dark: #6B4423;
-    --text: #333333;
-    --light-bg: #ffffff;
-}
-
-body {
-    font-family: 'Poppins', sans-serif;
-    background:
-        linear-gradient(rgba(248,244,237,0.85), rgba(248,244,237,0.85)),
-        url("background.jpeg");
-    background-size: cover;
-    background-position: center;
-    background-attachment: fixed;
-    color: var(--text);
-    overflow-x: hidden;
-    padding-top: 100px;
-}/* Offset for fixed header */
-
-
-h1, h2, h3, h4, .brand-text {
-    font-family: 'Cormorant Garamond', serif;
-}
-
-/* --- HEADER & NAVIGATION --- */
-header {
-    position: fixed;
-    width: 100%;
-    top: 0;
-    left: 0;
-    padding: 15px 8%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background: rgba(248, 244, 237, 0.98);
-    backdrop-filter: blur(10px);
-    z-index: 1000;
-    box-shadow: 0 2px 15px rgba(0,0,0,0.05);
-}
-
-.logo-wrap {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    cursor: pointer;
-}
-
-.logo-circle {
-    width: 55px;
-    height: 55px;
-    border: 2px solid var(--gold);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: #fff;
-    font-size: 26px;
-    font-weight: 700;
-    color: var(--gold);
-    box-shadow: 0 0 15px rgba(176,141,87,.15);
-}
-
-.brand-text {
-    font-size: 1.4rem;
-    font-weight: 700;
-    letter-spacing: 3px;
-    color: var(--dark);
-    text-transform: uppercase;
-}
-
-nav {
-    display: flex;
-    align-items: center;
-    gap: 30px;
-}
-
-.nav-links {
-    display: flex;
-    gap: 50px;
-}
-
-.nav-links a {
-    text-decoration: none;
-    color: #444;
-    font-weight: 500;
-    font-size: 0.95rem;
-    transition: 0.3s;
-    cursor: pointer;
-}
-
-.nav-links a:hover, .nav-links a.active {
-    color: var(--gold);
-}
-
-.icons {
-    display: flex;
-    gap: 20px;
-    font-size: 1.2rem;
-    color: var(--dark);
-}
-
-.icons i {
-    cursor: pointer;
-    position: relative;
-    transition: 0.3s;
-}
-
-.icons i:hover {
-    color: var(--gold);
-}
-
-.badge {
-    position: absolute;
-    top: -8px;
-    right: -10px;
-    background: var(--gold);
-    color: white;
-    font-size: 0.7rem;
-    padding: 2px 6px;
-    border-radius: 50%;
-    font-family: 'Poppins', sans-serif;
-}
-
-.mobile-menu-btn {
-    display: none;
-    margin-left: 15px;
-    font-size: 1.5rem;
-    cursor: pointer;
-    color: var(--dark);
-}
-
-/* --- VIEWS --- */
-.view {
-    display: none;
-    animation: fadeIn 0.5s ease;
-}
-
-.view.active {
-    display: block;
-}
-
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(10px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-
-/* --- HERO SECTION --- */
-.hero {
-    height: calc(100vh - 100px);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    padding: 0 10%;
-
-    background:
-    linear-gradient(rgba(248,244,237,0.25), rgba(248,244,237,0.25)),
-    url("background.jpeg");
-    background-position: center;
-    background-size: cover;
-}
-
-.hero-content h1{
-    font-size:clamp(2rem,8vw,4rem);
-    font-weight: 600;
-    letter-spacing: 4px;
-    color: var(--dark);
-    text-transform: uppercase;
-    margin-bottom: 20px;
-}
-
-.hero-content p {
-    font-size: 1.1rem;
-    max-width: 700px;
-    margin: 0 auto 30px auto;
-    color: #2b2b2b;
-    line-height: 1.6;
-    font-weight: 500;
-
-}
-
-.btn {
-    display: inline-block;
-    padding: 14px 40px;
-    background: var(--gold);
-    color: white;
-    text-decoration: none;
-    border-radius: 40px;
-    border: none;
-    font-size: 1rem;
-    cursor: pointer;
-    transition: 0.3s;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-}
-
-.btn:hover {
-    background: var(--dark);
-    transform: translateY(-3px);
-}
-
-/* --- GLOBAL SECTION LAYOUT --- */
-.section {
-    padding: 80px 8%;
-}
-
-.title {
-    text-align: center;
-    font-size: 3rem;
-    margin-bottom: 50px;
-    color: var(--dark);
-}
-
-/* --- PRODUCTS GRID & CARDS --- */
-.filters {
-    display: flex;
-    justify-content: center;
-    gap: 15px;
-    margin-bottom: 40px;
-    flex-wrap: wrap;
-}
-
-.filter-btn {
-    padding: 8px 25px;
-    border: 1px solid var(--gold);
-    background: transparent;
-    color: var(--dark);
-    border-radius: 30px;
-    cursor: pointer;
-    transition: 0.3s;
-    font-family: 'Poppins', sans-serif;
-}
-
-.filter-btn.active, .filter-btn:hover {
-    background: var(--gold);
-    color: white;
-}
-
-.grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 30px;
-}
-
-.card {
-    background: var(--light-bg);
-    border-radius: 20px;
-    overflow: hidden;
-    box-shadow: 0 10px 30px rgba(0,0,0,.05);
-    transition: 0.4s;
-    border: 1px solid rgba(176,141,87,.15);
-    position: relative;
-}
-
-.card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 15px 40px rgba(176,141,87,.15);
-}
-
-.card img {
-    width: 100%;
-    height: 320px;
-    object-fit: cover;
-}
-
-.card-actions {
-    position: absolute;
-    top: 15px;
-    right: -50px;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    transition: 0.4s;
-}
-
-.card:hover .card-actions {
-    right: 15px;
-}
-
-.card-actions button {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    border: none;
-    background: white;
-    color: var(--dark);
-    font-size: 1.1rem;
-    cursor: pointer;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-    transition: 0.3s;
-}
-
-.card-actions button:hover {
-    background: var(--gold);
-    color: white;
-}
-
-.card-content {
-    padding: 25px;
-    text-align: center;
-}
-
-.card-content h3 {
-    font-size: 1.8rem;
-    margin-bottom: 5px;
-    color: var(--dark);
-}
-
-.price {
-    color: var(--gold);
-    font-weight: 600;
-    font-size: 1.2rem;
-    margin-bottom: 15px;
-}
-
-/* --- CART & WISHLIST VIEWS --- */
-.list-item {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    background: white;
-    padding: 15px 25px;
-    border-radius: 15px;
-    margin-bottom: 15px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-}
-
-.list-item img {
-    width: 80px;
-    height: 80px;
-    border-radius: 10px;
-    object-fit: cover;
-}
-
-.item-details {
-    flex: 1;
-    margin-left: 20px;
-}
-
-.item-details h4 {
-    font-size: 1.4rem;
-    color: var(--dark);
-}
-
-.remove-btn {
-    color: #e74c3c;
-    background: transparent;
-    border: none;
-    cursor: pointer;
-    font-size: 1.2rem;
-}
-
-.checkout-area {
-    text-align: right;
-    margin-top: 30px;
-    padding-top: 20px;
-    border-top: 1px solid #ddd;
-}
-
-.cart-total{
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 2.4rem;
-    font-weight: 700;
-     color:#0D0702;
-    text-shadow: 0 2px 8px rgba(0,0,0,0.08);
-}
-
-#cartTotal{
-    color: #4A2C17;
-    font-size: 2.6rem;
-}
-
-
-/* --- ABOUT & CONTACT --- */
-.about {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 50px;
-    align-items: center;
-}
-
-.about img {
-    width: 100%;
-    border-radius: 25px;
-}
-
-.contact-form {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-    max-width: 600px;
-    margin: 0 auto;
-    background: white;
-    padding: 40px;
-    border-radius: 20px;
-    box-shadow: 0 10px 30px rgba(0,0,0,.05);
-}
-
-.contact-form input, .contact-form textarea {
-    width: 100%;
-    padding: 15px;
-    border: 1px solid #ddd;
-    border-radius: 10px;
-    font-family: 'Poppins', sans-serif;
-}
-
-.contact-form textarea {
-    resize: none;
-    height: 150px;
-}
-
-/* --- MODALS & TOASTS --- */
-.modal-overlay {
-    position: fixed;
-    top: 0; left: 0; width: 100%; height: 100%;
-    background: rgba(0,0,0,0.6);
-    display: none;
-    align-items: center;
-    justify-content: center;
-    z-index: 2000;
-}
-
-.modal {
-    background: white;
-    padding: 30px;
-    border-radius: 20px;
-    max-width: 800px;
-    width: 90%;
-    display: flex;
-    gap: 30px;
-    position: relative;
-}
-
-/* ZOOM EFFECT STYLES */
-.modal-image-wrapper {
-    width: 50%;
-    border-radius: 15px;
-    overflow: hidden;
-    position: relative;
-    cursor: zoom-in;
-    background: #fff;
-    touch-action: none; /* Prevents the page from scrolling while dragging to zoom */
-}
-
-.modal-image-wrapper img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.1s ease-out;
-    transform-origin: center center;
-}
-
-/* Desktop Hover and Mobile Touch Class */
-.modal-image-wrapper:hover img,
-.modal-image-wrapper img.zoomed {
-    transform: scale(2.5); /* Adjust this value to increase/decrease zoom level */
-}
-
-.close-modal {
-    position: absolute;
-    top: 15px; right: 20px;
-    font-size: 1.5rem;
-    cursor: pointer;
-    color: #888;
-    z-index: 10;
-}
-
-#toast {
-    position: fixed;
-    bottom: 30px;
-    right: 30px;
-    background: var(--dark);
-    color: white;
-    padding: 15px 25px;
-    border-radius: 10px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-    transform: translateX(150%);
-    transition: 0.3s ease-in-out;
-    z-index: 3000;
-}
-
-#toast.show {
-    transform: translateX(0);
-}
-
-/* --- FOOTER --- */
-footer {
-    background: white;
-    padding: 40px;
-    text-align: center;
-    border-top: 1px solid #eee;
-    margin-top: 50px;
-}
-.quantity-controls{
-    display:flex;
-    align-items:center;
-    gap:15px;
-    margin-top:10px;
-}
-
-.qty-btn{
-    width:20px;
-    height:20px;
-    border:none;
-    border-radius:50%;
-    background:#B08D57;
-    color:white;
-    font-size:1.4rem;
-    font-weight:bold;
-    cursor:pointer;
-    transition:0.3s;
-}
-
-.qty-btn:hover{
-    background:#6B4423;
-}
-
-.qty-number{
-    font-size:1.2rem;
-    font-weight:600;
-    min-width:30px;
-    text-align:center;
-}
-
-/* --- RESPONSIVE --- */
-@media(max-width: 768px) {
-    .nav-links {
-        position: fixed;
-        top: 85px;
-        left: 0; /* Anchor to the left side */
-        transform: translateX(-100%); /* Push it off-screen via transform */
-        width: 100%;
-        height: calc(100vh - 85px);
-        background: var(--cream);
-        flex-direction: column;
-        align-items: center; /* This correctly centers the text horizontally */
-        justify-content: flex-start;
-        padding-top: 15vw; /* Adds breathing room at the top */
-        gap: 40px;
-        transition: transform 0.4s ease-in-out; /* Smooth slide animation */
-    }
-    .nav-links.mobile-active {
-        transform: translateX(0); /* Slide it into view when active */
-    }
-    .nav-links a {
-        font-size: 1.5rem;
-    }
-    .mobile-menu-btn { display: block; }
-    .hero-content h1 { font-size: 2.2rem; }
-    .about { grid-template-columns: 1fr; }
-    .modal { flex-direction: column; }
-    .modal-image-wrapper { width: 100%; height: 250px; }
-    .card-content .btn { width: 100%; }
-    .checkout-area { text-align: center; }
-}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jewells By Queens | Timeless Luxury</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Cormorant+Garamond:wght@400;500;600;700&family=Poppins:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        media="print" onload="this.media='all'">
+    <noscript>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    </noscript>
+
+    <style>
+        /* --- BASE STYLES & VARIABLES --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --gold: #B08D57;
+            --cream: #F8F4ED;
+            --dark: #6B4423;
+            --text: #333333;
+            --light-bg: #ffffff;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background:
+                linear-gradient(rgba(248, 244, 237, 0.85), rgba(248, 244, 237, 0.85)),
+                url("background.jpeg");
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            color: var(--text);
+            overflow-x: hidden;
+            padding-top: 100px;
+        }
+
+        /* Offset for fixed header */
+
+
+        h1,
+        h2,
+        h3,
+        h4,
+        .brand-text {
+            font-family: 'Cormorant Garamond', serif;
+        }
+
+        /* --- HEADER & NAVIGATION --- */
+        header {
+            position: fixed;
+            width: 100%;
+            top: 0;
+            left: 0;
+            padding: 15px 8%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(248, 244, 237, 0.98);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .logo-wrap {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            cursor: pointer;
+        }
+
+        .logo-circle {
+            width: 55px;
+            height: 55px;
+            border: 2px solid var(--gold);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #fff;
+            font-size: 26px;
+            font-weight: 700;
+            color: var(--gold);
+            box-shadow: 0 0 15px rgba(176, 141, 87, .15);
+        }
+
+        .brand-text {
+            font-size: 1.4rem;
+            font-weight: 700;
+            letter-spacing: 3px;
+            color: var(--dark);
+            text-transform: uppercase;
+        }
+
+        nav {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 50px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #444;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: 0.3s;
+            cursor: pointer;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--gold);
+        }
+
+        .icons {
+            display: flex;
+            gap: 20px;
+            font-size: 1.2rem;
+            color: var(--dark);
+        }
+
+        .icons i {
+            cursor: pointer;
+            position: relative;
+            transition: 0.3s;
+        }
+
+        .icons i:hover {
+            color: var(--gold);
+        }
+
+        .badge {
+            position: absolute;
+            top: -8px;
+            right: -10px;
+            background: var(--gold);
+            color: white;
+            font-size: 0.7rem;
+            padding: 2px 6px;
+            border-radius: 50%;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            margin-left: 15px;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--dark);
+        }
+
+        /* --- VIEWS --- */
+        .view {
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .view.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* --- HERO SECTION --- */
+        .hero {
+            height: calc(100vh - 100px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 0 10%;
+
+            background:
+                linear-gradient(rgba(248, 244, 237, 0.25), rgba(248, 244, 237, 0.25)),
+                url("background.jpeg");
+            background-position: center;
+            background-size: cover;
+        }
+
+        .hero-content h1 {
+            font-size: clamp(2rem, 8vw, 4rem);
+            font-weight: 600;
+            letter-spacing: 4px;
+            color: var(--dark);
+            text-transform: uppercase;
+            margin-bottom: 20px;
+        }
+
+        .hero-content p {
+            font-size: 1.1rem;
+            max-width: 700px;
+            margin: 0 auto 30px auto;
+            color: #2b2b2b;
+            line-height: 1.6;
+            font-weight: 500;
+
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 14px 40px;
+            background: var(--gold);
+            color: white;
+            text-decoration: none;
+            border-radius: 40px;
+            border: none;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .btn:hover {
+            background: var(--dark);
+            transform: translateY(-3px);
+        }
+
+        /* --- GLOBAL SECTION LAYOUT --- */
+        .section {
+            padding: 80px 8%;
+        }
+
+        .title {
+            text-align: center;
+            font-size: 3rem;
+            margin-bottom: 50px;
+            color: var(--dark);
+        }
+
+        /* --- PRODUCTS GRID & CARDS --- */
+        .filters {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            padding: 8px 25px;
+            border: 1px solid var(--gold);
+            background: transparent;
+            color: var(--dark);
+            border-radius: 30px;
+            cursor: pointer;
+            transition: 0.3s;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .filter-btn.active,
+        .filter-btn:hover {
+            background: var(--gold);
+            color: white;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .card {
+            background: var(--light-bg);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, .05);
+            transition: 0.4s;
+            border: 1px solid rgba(176, 141, 87, .15);
+            position: relative;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(176, 141, 87, .15);
+        }
+
+        .card img {
+            width: 100%;
+            height: 320px;
+            object-fit: cover;
+        }
+
+        .card-actions {
+            position: absolute;
+            top: 15px;
+            right: -50px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            transition: 0.4s;
+        }
+
+        .card:hover .card-actions {
+            right: 15px;
+        }
+
+        .card-actions button {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: none;
+            background: white;
+            color: var(--dark);
+            font-size: 1.1rem;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: 0.3s;
+        }
+
+        .card-actions button:hover {
+            background: var(--gold);
+            color: white;
+        }
+
+        .card-content {
+            padding: 25px;
+            text-align: center;
+        }
+
+        .card-content h3 {
+            font-size: 1.8rem;
+            margin-bottom: 5px;
+            color: var(--dark);
+        }
+
+        .price {
+            color: var(--gold);
+            font-weight: 600;
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+        }
+
+        /* --- CART & WISHLIST VIEWS --- */
+        .list-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: white;
+            padding: 15px 25px;
+            border-radius: 15px;
+            margin-bottom: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .list-item img {
+            width: 80px;
+            height: 80px;
+            border-radius: 10px;
+            object-fit: cover;
+        }
+
+        .item-details {
+            flex: 1;
+            margin-left: 20px;
+        }
+
+        .item-details h4 {
+            font-size: 1.4rem;
+            color: var(--dark);
+        }
+
+        .remove-btn {
+            color: #e74c3c;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            font-size: 1.2rem;
+        }
+
+        .checkout-area {
+            text-align: right;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #ddd;
+        }
+
+        .cart-total {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2.4rem;
+            font-weight: 700;
+            color: #0D0702;
+            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+        }
+
+        #cartTotal {
+            color: #4A2C17;
+            font-size: 2.6rem;
+        }
+
+
+        /* --- ABOUT & CONTACT --- */
+        .about {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .about img {
+            width: 100%;
+            border-radius: 25px;
+        }
+
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            max-width: 600px;
+            margin: 0 auto;
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, .05);
+        }
+
+        .contact-form input,
+        .contact-form textarea {
+            width: 100%;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .contact-form textarea {
+            resize: none;
+            height: 150px;
+        }
+
+        /* --- MODALS & TOASTS --- */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 2000;
+        }
+
+        .modal {
+            background: white;
+            padding: 30px;
+            border-radius: 20px;
+            max-width: 800px;
+            width: 90%;
+            display: flex;
+            gap: 30px;
+            position: relative;
+        }
+
+        /* ZOOM EFFECT STYLES */
+        .modal-image-wrapper {
+            width: 50%;
+            border-radius: 15px;
+            overflow: hidden;
+            position: relative;
+            cursor: zoom-in;
+            background: #fff;
+            touch-action: none;
+            /* Prevents the page from scrolling while dragging to zoom */
+        }
+
+        .modal-image-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.1s ease-out;
+            transform-origin: center center;
+        }
+
+        /* Desktop Hover and Mobile Touch Class */
+        .modal-image-wrapper:hover img,
+        .modal-image-wrapper img.zoomed {
+            transform: scale(2.5);
+            /* Adjust this value to increase/decrease zoom level */
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #888;
+            z-index: 10;
+        }
+
+        #toast {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: var(--dark);
+            color: white;
+            padding: 15px 25px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            transform: translateX(150%);
+            transition: 0.3s ease-in-out;
+            z-index: 3000;
+        }
+
+        #toast.show {
+            transform: translateX(0);
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            background: white;
+            padding: 40px;
+            text-align: center;
+            border-top: 1px solid #eee;
+            margin-top: 50px;
+        }
+
+        .quantity-controls {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-top: 10px;
+        }
+
+        .qty-btn {
+            width: 20px;
+            height: 20px;
+            border: none;
+            border-radius: 50%;
+            background: #B08D57;
+            color: white;
+            font-size: 1.4rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .qty-btn:hover {
+            background: #6B4423;
+        }
+
+        .qty-number {
+            font-size: 1.2rem;
+            font-weight: 600;
+            min-width: 30px;
+            text-align: center;
+        }
+
+        /* --- RESPONSIVE --- */
+        @media(max-width: 768px) {
+            .nav-links {
+                position: fixed;
+                top: 85px;
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 85px);
+                background: var(--cream);
+                flex-direction: column;
+                justify-content: center;
+                gap: 40px;
+                transition: 0.4s;
+            }
+
+            .nav-links.mobile-active {
+                left: 0;
+            }
+
+            .nav-links a {
+                font-size: 1.5rem;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .hero-content h1 {
+                font-size: 2.2rem;
+            }
+
+            .about {
+                grid-template-columns: 1fr;
+            }
+
+            .modal {
+                flex-direction: column;
+            }
+
+            .modal-image-wrapper {
+                width: 100%;
+                height: 250px;
+            }
+
+            .card-content .btn {
+                width: 100%;
+            }
+
+            .checkout-area {
+                text-align: center;
+            }
+
+        }
+    </style>
 </head>
+
 <body>
 
-<header>
-    <div class="logo-wrap" onclick="switchView('home')">
-        <div class="logo-circle">JQ</div>
-        <div class="brand-text">Jewells By Queens</div>
-    </div>
-
-    <nav>
-        <div class="nav-links" id="navLinks">
-            <a onclick="switchView('home')" class="active">Home</a>
-            <a onclick="switchView('shop')">Shop</a>
-            <a onclick="switchView('about')">About</a>
-         <a onclick="switchView('contact')">Contact Us</a>
+    <header>
+        <div class="logo-wrap" onclick="switchView('home')">
+            <div class="logo-circle">JQ</div>
+            <div class="brand-text">Jewells By Queens</div>
         </div>
-        <div class="icons">
-            <i class="fas fa-heart" onclick="switchView('wishlist')">
-                <span class="badge" id="wishlistCount">0</span>
-            </i>
-            <i class="fas fa-shopping-bag" onclick="switchView('cart')">
-                <span class="badge" id="cartCount">0</span>
-            </i>
-            <i class="fas fa-bars mobile-menu-btn" onclick="toggleMenu()"></i>
-        </div>
-    </nav>
-</header>
 
-<div id="toast">Item added!</div>
-
-<div class="modal-overlay" id="quickViewModal">
-    <div class="modal">
-        <i class="fas fa-times close-modal" onclick="closeModal()"></i>
-        
-        <div class="modal-image-wrapper" id="zoomWrapper" 
-             onmousemove="zoomImage(event)" 
-             onmouseleave="resetZoom()"
-             ontouchstart="startTouchZoom(event)"
-             ontouchmove="moveTouchZoom(event)"
-             ontouchend="resetZoom()">
-            <img id="modalImg" src="" alt="Product">
-        </div>
-        
-        <div style="flex:1; display:flex; flex-direction:column; justify-content:center;">
-            <h2 id="modalTitle" style="font-size: 2.5rem; color: var(--dark); margin-bottom: 10px;">Title</h2>
-            <p id="modalPrice" class="price" style="font-size: 1.5rem;">$0</p>
-            <p style="margin-bottom: 20px; color: #666;">Beautifully crafted piece perfect for elegant occasions. Features premium materials and expert finishing.</p>
-            <button class="btn" id="modalAddToCart" style="width: 100%;">Add to Cart</button>
-        </div>
-    </div>
-</div>
-
-<div id="view-home" class="view active">
-    <section class="hero">
-        <div class="hero-content">
-            <h1>Jewells By Queens</h1>
-            <p>Timeless luxury crafted for modern queens. Discover exquisite jewellery designed to celebrate elegance and individuality.</p>
-            <button class="btn" onclick="switchView('shop')">Explore Collection</button>
-        </div>
-    </section>
-
-    <section class="section">
-        <h2 class="title">Featured Highlights</h2>
-        <div class="grid" id="featuredGrid">
+        <nav>
+            <div class="nav-links" id="navLinks">
+                <a onclick="switchView('home')" class="active">Home</a>
+                <a onclick="switchView('shop')">Shop</a>
+                <a onclick="switchView('about')">About</a>
+                <a onclick="switchView('contact')">Contact Us</a>
             </div>
-    </section>
-</div>
+            <div class="icons">
+                <i class="fas fa-heart" onclick="switchView('wishlist')">
+                    <span class="badge" id="wishlistCount">0</span>
+                </i>
+                <i class="fas fa-shopping-bag" onclick="switchView('cart')">
+                    <span class="badge" id="cartCount">0</span>
+                </i>
+                <i class="fas fa-bars mobile-menu-btn" onclick="toggleMenu()"></i>
+            </div>
+        </nav>
+    </header>
 
-<div id="view-shop" class="view section">
-    <h2 class="title">Our Collections</h2>
-   <div class="filters">
-    <button class="filter-btn active" onclick="filterProducts('all')">All</button>
-    <button class="filter-btn" onclick="filterProducts('ring')">Rings</button>
-    <button class="filter-btn" onclick="filterProducts('pendant')">Pendant Sets</button>
-    <button class="filter-btn" onclick="filterProducts('earring')">Earrings</button>
-  <button class="filter-btn" onclick="filterProducts('bangle')">Bangles</button>
-    <button class="filter-btn" onclick="filterProducts('set')">Sets</button>
-</div>
-    <div class="grid" id="shopGrid">
-        </div>
-</div>
+    <div id="toast">Item added!</div>
 
-<div id="view-cart" class="view section">
-    <h2 class="title">Shopping Bag</h2>
-    <div style="max-width: 800px; margin: 0 auto;" id="cartContainer">
-        </div>
-    <div class="checkout-area" style="max-width: 800px; margin: 30px auto 0;">
-    <h3 class="cart-total">
-    Total: ₹<span id="cartTotal">0</span>
-</h3>
-        <button class="btn" style="margin-top: 15px;" onclick="switchView('contact')">
-    Order on WhatsApp
-</button>
-    </div>
-</div>
+    <div class="modal-overlay" id="quickViewModal">
+        <div class="modal">
+            <i class="fas fa-times close-modal" onclick="closeModal()"></i>
 
-<div id="view-wishlist" class="view section">
-    <h2 class="title">Your Wishlist</h2>
-    <div style="max-width: 800px; margin: 0 auto;" id="wishlistContainer">
-        </div>
-</div>
+            <div class="modal-image-wrapper" id="zoomWrapper" onmousemove="zoomImage(event)" onmouseleave="resetZoom()"
+                ontouchstart="startTouchZoom(event)" ontouchmove="moveTouchZoom(event)" ontouchend="resetZoom()">
+                <img id="modalImg" src="" alt="Product">
+            </div>
 
-<div id="view-about" class="view section">
-    <div class="about" style="max-width: 1000px; margin: 0 auto;">
-        <img src="background.jpeg" alt="About Us">
-        <div>
-            <h2 class="title" style="text-align: left; margin-bottom: 20px;">Our Story</h2>
-            <p style="color: #555; line-height: 1.8;">
-                Every piece at Jewells By Queens is crafted with elegance and precision, inspired by timeless beauty and modern sophistication. We source only the finest materials to create heirloom-quality jewellery that celebrates the queen within every woman.
-            </p>
+            <div style="flex:1; display:flex; flex-direction:column; justify-content:center;">
+                <h2 id="modalTitle" style="font-size: 2.5rem; color: var(--dark); margin-bottom: 10px;">Title</h2>
+                <p id="modalPrice" class="price" style="font-size: 1.5rem;">$0</p>
+                <p style="margin-bottom: 20px; color: #666;">Beautifully crafted piece perfect for elegant occasions.
+                    Features premium materials and expert finishing.</p>
+                <button class="btn" id="modalAddToCart" style="width: 100%;">Add to Cart</button>
+            </div>
         </div>
     </div>
-</div>
 
-<div id="view-contact" class="view section">
-    <h2 class="title">Order on WhatsApp</h2>
+    <div id="view-home" class="view active">
+        <section class="hero">
+            <div class="hero-content">
+                <h1>Jewells By Queens</h1>
+                <p>Timeless luxury crafted for modern queens. Discover exquisite jewellery designed to celebrate
+                    elegance and individuality.</p>
+                <button class="btn" onclick="switchView('shop')">Explore Collection</button>
+            </div>
+        </section>
 
-    <form class="contact-form" onsubmit="sendWhatsAppOrder(event)">
-        <input type="text" id="customerName" placeholder="Your Name" required>
+        <section class="section">
+            <h2 class="title">Featured Highlights</h2>
+            <div class="grid" id="featuredGrid">
+            </div>
+        </section>
+    </div>
 
-        <input type="tel" id="customerPhone" placeholder="Mobile Number" required>
+    <div id="view-shop" class="view section">
+        <h2 class="title">Our Collections</h2>
+        <div class="filters">
+            <button class="filter-btn active" onclick="filterProducts('all')">All</button>
+            <button class="filter-btn" onclick="filterProducts('ring')">Rings</button>
+            <button class="filter-btn" onclick="filterProducts('pendant')">Pendant Sets</button>
+            <button class="filter-btn" onclick="filterProducts('earring')">Earrings</button>
+            <button class="filter-btn" onclick="filterProducts('bangle')">Bangles</button>
+            <button class="filter-btn" onclick="filterProducts('set')">Sets</button>
+        </div>
+        <div class="grid" id="shopGrid">
+        </div>
+    </div>
 
-<input type="text"
-       id="customerPincode"
-       placeholder="PIN Code"
-       maxlength="6"
-       pattern="[0-9]{6}"
-       required>
+    <div id="view-cart" class="view section">
+        <h2 class="title">Shopping Bag</h2>
+        <div style="max-width: 800px; margin: 0 auto;" id="cartContainer">
+        </div>
+        <div class="checkout-area" style="max-width: 800px; margin: 30px auto 0;">
+            <h3 class="cart-total">
+                Total: ₹<span id="cartTotal">0</span>
+            </h3>
+            <button class="btn" style="margin-top: 15px;" onclick="switchView('contact')">
+                Order on WhatsApp
+            </button>
+        </div>
+    </div>
 
-<textarea id="customerAddress" placeholder="Full Delivery Address" required></textarea>
+    <div id="view-wishlist" class="view section">
+        <h2 class="title">Your Wishlist</h2>
+        <div style="max-width: 800px; margin: 0 auto;" id="wishlistContainer">
+        </div>
+    </div>
 
-        <button type="submit" class="btn">
-            Order via WhatsApp
-        </button>
-    </form>
-</div>
-<footer>
-    <p>© 2026 Jewells By Queens. All Rights Reserved.</p>
-</footer>
+    <div id="view-about" class="view section">
+        <div class="about" style="max-width: 1000px; margin: 0 auto;">
+            <img src="background.jpeg" alt="About Us">
+            <div>
+                <h2 class="title" style="text-align: left; margin-bottom: 20px;">Our Story</h2>
+                <p style="color: #555; line-height: 1.8;">
+                    Every piece at Jewells By Queens is crafted with elegance and precision, inspired by timeless beauty
+                    and modern sophistication. We source only the finest materials to create heirloom-quality jewellery
+                    that celebrates the queen within every woman.
+                </p>
+            </div>
+        </div>
+    </div>
 
-<script>
-// --- PRODUCT DATA WITH LOCAL IMAGES ---
-const products = [
-   { id: 3, name: "Diamond Earrings", price: 199, category: "earring", img: "ER 1.jpeg" },
-{ id: 7, name: "Pearl Drop Earrings", price: 199, category: "earring", img: "ER 2.jpeg" },
-{ id: 10, name: "Vintage Drop Earrings", price: 199, category: "earring", img: "ER 3.jpeg" },
-{ id: 12, name: "Crystal Earrings", price: 199, category: "earring", img: "ER 4.jpeg" },
-{ id: 13, name: "Royal Stud Earrings", price: 199, category: "earring", img: "ER 5.jpeg" },
-{ id: 14, name: "Luxury Drop Earrings", price: 199, category: "earring", img: "ER 6.jpeg" },
-{ id: 1, name: "Bow Bangle", price: 299,category: "bangle", img: "BN 1.jpeg" },
+    <div id="view-contact" class="view section">
+        <h2 class="title">Order on WhatsApp</h2>
 
-{ id: 2, name: "Elegant Bow Bangle", price: 299, category: "bangle", img: "BN 2.jpeg" },
+        <form class="contact-form" onsubmit="sendWhatsAppOrder(event)">
+            <input type="text" id="customerName" placeholder="Your Name" required>
 
-{ id: 25, name: "Royal Bangle", price: 299, category: "bangle", img: "BN 3.jpeg" },
+            <input type="tel" id="customerPhone" placeholder="Mobile Number" required>
 
-{ id: 26, name: "Designer Bangle", price: 299, category: "bangle", img: "BN 4.jpeg" },
-{ id: 15, name: "Royal Bridal Set", price: 1499, category: "set", img: "AD SET 1.jpeg" },
-{ id: 16, name: "Pearl Jewellery Set", price: 1499, category: "set", img: "AD SET 2.jpeg" },
-{ id: 17, name: "Designer Bridal Set", price: 1499, category: "set", img: "AD SET 3.jpeg" },
-{ id: 18, name: "Wedding Collection Set", price: 1499, category: "set", img: "AD SET 4.jpeg" },
-{ id: 19, name: "Golden Bridal Set", price: 1499, category: "set", img: "AD SET 5.jpeg" },
-{ id: 20, name: "Premium Jewellery Set", price: 1499, category: "set", img: "AD SET 6.jpeg" },
-{ id: 21, name: "Luxury Queen Set", price: 1499, category: "set", img: "AD SET 7.jpeg" },
-{ id: 22, name: "Diamond Bridal Set", price: 1499, category: "set", img: "AD SET 8.jpeg" },
-{ id: 23, name: "Royal Wedding Set", price: 1499, category: "set", img: "AD SET 9.jpeg" },
-{ id: 24, name: "Exclusive Bridal Set", price: 1499, category: "set", img: "AD SET 10.jpeg" },
-{ id: 4, name: "Royal Ring", price: 1299, category: "ring", img: "WhatsApp Image 2026-06-09 at 4.32.11 PM.jpeg" },
-{ id: 6, name: "Sapphire Halo Ring", price: 599, category: "ring", img: "WhatsApp Image 2.jpeg" },
-{ id: 9, name: "Classic Band", price: 499, category: "ring", img: "WhatsApp Image 2026-06-06 PM.jpeg" },
-{ id: 5, name: "Queen Pendant Set", price: 899, category: "pendant", img: "WhatsApp Imag.jpeg" },
+            <input type="text" id="customerPincode" placeholder="PIN Code" maxlength="6" pattern="[0-9]{6}" required>
 
-{ id: 8, name: "Golden Pendant Set", price: 1099, category: "pendant", img: "WhatsApp Image 2026-0.jpeg" },
+            <textarea id="customerAddress" placeholder="Full Delivery Address" required></textarea>
 
-{ id: 11, name: "Luxury Pendant Set", price: 1599, category: "pendant", img: "WhatsApp Image 2026-06-08 at 4.46..jpeg" },
+            <button type="submit" class="btn">
+                Order via WhatsApp
+            </button>
+        </form>
+    </div>
+    <footer>
+        <p>© 2026 Jewells By Queens. All Rights Reserved.</p>
+    </footer>
 
-];
+    <script>
+        // --- PRODUCT DATA WITH LOCAL IMAGES ---
+        const products = [
+            // EARRINGS (ER) - Reordered (ER 01 to ER 07 first, then ER 1 to ER 6)
+            { id: 7, name: "Elegant Earring 01", price: 249, category: "earring", img: "ER 01.jpeg" },
+            { id: 8, name: "Elegant Earring 02", price: 249, category: "earring", img: "ER 02.jpeg" },
+            { id: 9, name: "Elegant Earring 03", price: 249, category: "earring", img: "ER  03.jpeg" },
+            { id: 10, name: "Elegant Earring 04", price: 249, category: "earring", img: "ER 04.jpeg" },
+            { id: 11, name: "Elegant Earring 05", price: 249, category: "earring", img: "ER 05.jpeg" },
+            { id: 12, name: "Elegant Earring 06", price: 249, category: "earring", img: "ER 06.jpeg" },
+            { id: 13, name: "Elegant Earring 07", price: 249, category: "earring", img: "ER 07.jpeg" },
+            { id: 1, name: "Classic Earring 1", price: 199, category: "earring", img: "ER 1.jpeg" },
+            { id: 2, name: "Classic Earring 2", price: 199, category: "earring", img: "ER 2.jpeg" },
+            { id: 3, name: "Classic Earring 3", price: 199, category: "earring", img: "ER 3.jpeg" },
+            { id: 4, name: "Classic Earring 4", price: 199, category: "earring", img: "ER 4.jpeg" },
+            { id: 5, name: "Classic Earring 5", price: 199, category: "earring", img: "ER 5.jpeg" },
+            { id: 6, name: "Classic Earring 6", price: 199, category: "earring", img: "ER 6.jpeg" },
 
-// --- STATE MANAGEMENT (LocalStorage) ---
-let cart = JSON.parse(localStorage.getItem('jq_cart')) || [];
-let wishlist = JSON.parse(localStorage.getItem('jq_wishlist')) || [];
-let buyNowProduct = null;
+            // BANGLES (BN)
+            { id: 14, name: "Royal Bangle 1", price: 299, category: "bangle", img: "BN 1.jpeg" },
+            { id: 15, name: "Royal Bangle 2", price: 299, category: "bangle", img: "BN 2.jpeg" },
+            { id: 16, name: "Royal Bangle 3", price: 299, category: "bangle", img: "BN 3.jpeg" },
+            { id: 17, name: "Royal Bangle 4", price: 299, category: "bangle", img: "BN 4.jpeg" },
 
-// --- INITIALIZATION ---
-document.addEventListener('DOMContentLoaded', () => {
-    renderProducts('all');
-    renderFeatured();
-    updateBadges();
-    renderCart();
-    renderWishlist();
-});
+            // SETS (AD SET)
+            { id: 18, name: "Bridal Set 1", price: 1499, category: "set", img: "AD SET 1.jpeg" },
+            { id: 19, name: "Bridal Set 2", price: 1499, category: "set", img: "AD SET 2.jpeg" },
+            { id: 20, name: "Bridal Set 3", price: 1499, category: "set", img: "AD SET 3.jpeg" },
+            { id: 21, name: "Bridal Set 4", price: 1499, category: "set", img: "AD SET 4.jpeg" },
+            { id: 22, name: "Bridal Set 5", price: 1499, category: "set", img: "AD SET 5.jpeg" },
+            { id: 23, name: "Bridal Set 6", price: 1499, category: "set", img: "AD SET 6.jpeg" },
+            { id: 24, name: "Bridal Set 7", price: 1499, category: "set", img: "AD SET 7.jpeg" },
+            { id: 25, name: "Bridal Set 8", price: 1499, category: "set", img: "AD SET 8.jpeg" },
+            { id: 26, name: "Bridal Set 9", price: 1499, category: "set", img: "AD SET 9.jpeg" },
+            { id: 27, name: "Bridal Set 10", price: 1499, category: "set", img: "AD SET 10.jpeg" },
 
-// --- NAVIGATION & VIEWS ---
-function switchView(viewId) {
-    document.querySelectorAll('.view').forEach(view => view.classList.remove('active'));
-    document.getElementById(`view-${viewId}`).classList.add('active');
-    
-    // Update nav active state
-    document.querySelectorAll('.nav-links a').forEach(link => link.classList.remove('active'));
-    const activeLink = Array.from(document.querySelectorAll('.nav-links a')).find(a => a.textContent.toLowerCase() === viewId);
-    if(activeLink) activeLink.classList.add('active');
+            // RINGS (RN)
+            { id: 28, name: "Diamond Ring 1", price: 499, category: "ring", img: "RN 1.jpeg" },
+            { id: 29, name: "Diamond Ring 2", price: 499, category: "ring", img: "RN 2.jpeg" },
+            { id: 30, name: "Diamond Ring 3", price: 499, category: "ring", img: "RN 3.jpeg" },
+            { id: 31, name: "Diamond Ring 4", price: 499, category: "ring", img: "RN 4.jpeg" },
+            { id: 32, name: "Diamond Ring 5", price: 499, category: "ring", img: "RN 5.jpeg" },
+            { id: 33, name: "Diamond Ring 6", price: 499, category: "ring", img: "RN 6.jpeg" },
+            { id: 34, name: "Diamond Ring 7", price: 499, category: "ring", img: "RN 7.jpeg" },
 
-    // Close mobile menu if open
-    document.getElementById('navLinks').classList.remove('mobile-active');
-    window.scrollTo(0,0);
-}
+            // PENDANTS (NS)
+            { id: 35, name: "Queen Pendant 1", price: 899, category: "pendant", img: "NS 1.jpeg" },
+            { id: 36, name: "Queen Pendant 2", price: 899, category: "pendant", img: "NS 2.jpeg" },
+            { id: 37, name: "Queen Pendant 3", price: 899, category: "pendant", img: "NS 3.jpeg" },
+            { id: 38, name: "Queen Pendant 4", price: 899, category: "pendant", img: "NS 4.jpeg" },
+            { id: 39, name: "Queen Pendant 5", price: 899, category: "pendant", img: "NS 5.jpeg" },
+            { id: 40, name: "Queen Pendant 6", price: 899, category: "pendant", img: "NS 6.jpeg" },
+            { id: 41, name: "Queen Pendant 7", price: 899, category: "pendant", img: "NS 7.jpeg" },
+            { id: 42, name: "Queen Pendant 8", price: 899, category: "pendant", img: "NS 8.jpeg" },
+            { id: 43, name: "Queen Pendant 9", price: 899, category: "pendant", img: "NS 9.jpeg" }
+        ];
 
-function toggleMenu() {
-    document.getElementById('navLinks').classList.toggle('mobile-active');
-}
+        // --- STATE MANAGEMENT (LocalStorage) ---
+        let cart = JSON.parse(localStorage.getItem('jq_cart')) || [];
+        let wishlist = JSON.parse(localStorage.getItem('jq_wishlist')) || [];
+        let buyNowProduct = null;
 
-// --- RENDER PRODUCTS ---
-function generateCardHTML(product) {
-    const inWishlist = wishlist.find(item => item.id === product.id);
-    const heartClass = inWishlist ? 'fas' : 'far';
-    
-    return `
+        // --- INITIALIZATION ---
+        document.addEventListener('DOMContentLoaded', () => {
+            renderProducts('all');
+            renderFeatured();
+            updateBadges();
+            renderCart();
+            renderWishlist();
+        });
+
+        // --- NAVIGATION & VIEWS ---
+        function switchView(viewId) {
+            document.querySelectorAll('.view').forEach(view => view.classList.remove('active'));
+            document.getElementById(`view-${viewId}`).classList.add('active');
+
+            // Update nav active state
+            document.querySelectorAll('.nav-links a').forEach(link => link.classList.remove('active'));
+            const activeLink = Array.from(document.querySelectorAll('.nav-links a')).find(a => a.textContent.toLowerCase() === viewId);
+            if (activeLink) activeLink.classList.add('active');
+
+            // Close mobile menu if open
+            document.getElementById('navLinks').classList.remove('mobile-active');
+            window.scrollTo(0, 0);
+        }
+
+        function toggleMenu() {
+            document.getElementById('navLinks').classList.toggle('mobile-active');
+        }
+
+        // --- RENDER PRODUCTS ---
+        function generateCardHTML(product) {
+            const inWishlist = wishlist.find(item => item.id === product.id);
+            const heartClass = inWishlist ? 'fas' : 'far';
+
+            return `
         <div class="card" id="product-${product.id}">
           <img src="${product.img}" alt="${product.name}" loading="lazy" onerror="this.src='https://via.placeholder.com/600x600?text=Image+Not+Found'">
             <div class="card-actions">
@@ -816,102 +883,102 @@ function generateCardHTML(product) {
             </div>
         </div>
     `;
-}
+        }
 
-function renderFeatured() {
-    const grid = document.getElementById('featuredGrid');
-    grid.innerHTML = products.slice(0, 3).map(generateCardHTML).join('');
-}
+        function renderFeatured() {
+            const grid = document.getElementById('featuredGrid');
+            grid.innerHTML = products.slice(0, 3).map(generateCardHTML).join('');
+        }
 
-function renderProducts(category) {
-    const grid = document.getElementById('shopGrid');
-    const filtered = category === 'all' ? products : products.filter(p => p.category === category);
-    grid.innerHTML = filtered.map(generateCardHTML).join('');
-}
+        function renderProducts(category) {
+            const grid = document.getElementById('shopGrid');
+            const filtered = category === 'all' ? products : products.filter(p => p.category === category);
+            grid.innerHTML = filtered.map(generateCardHTML).join('');
+        }
 
-function filterProducts(category) {
-    document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
-    event.target.classList.add('active');
-    renderProducts(category);
-}
+        function filterProducts(category) {
+            document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+            renderProducts(category);
+        }
 
-// --- CART & WISHLIST LOGIC ---
-function addToCart(id) {
-    const product = products.find(p => p.id === id);
-    const existing = cart.find(item => item.id === id);
-    
-    if(existing) {
-        existing.quantity += 1;
-    } else {
-        cart.push({ ...product, quantity: 1 });
-    }
-    
-    saveState();
-    showToast(`${product.name} added to Bag!`);
-}
+        // --- CART & WISHLIST LOGIC ---
+        function addToCart(id) {
+            const product = products.find(p => p.id === id);
+            const existing = cart.find(item => item.id === id);
 
-function buyNow(id) {
-    buyNowProduct = products.find(p => p.id === id);
-    // Open WhatsApp order form
-    switchView('contact');
-}
+            if (existing) {
+                existing.quantity += 1;
+            } else {
+                cart.push({ ...product, quantity: 1 });
+            }
 
-function toggleWishlist(id) {
-    const product = products.find(p => p.id === id);
-    const index = wishlist.findIndex(item => item.id === id);
-    
-    if(index > -1) {
-        wishlist.splice(index, 1);
-        showToast(`${product.name} removed from Wishlist`);
-    } else {
-        wishlist.push(product);
-        showToast(`${product.name} added to Wishlist!`);
-    }
-    
-    saveState();
-    // Re-render to update heart icons
-    renderFeatured();
-    renderProducts('all'); 
-}
+            saveState();
+            showToast(`${product.name} added to Bag!`);
+        }
 
-function removeFromCart(id) {
-    cart = cart.filter(item => item.id !== id);
-    saveState();
-}
+        function buyNow(id) {
+            buyNowProduct = products.find(p => p.id === id);
+            // Open WhatsApp order form
+            switchView('contact');
+        }
 
-function removeWishlist(id) {
-    wishlist = wishlist.filter(item => item.id !== id);
-    saveState();
-    renderFeatured();
-    renderProducts('all');
-}
+        function toggleWishlist(id) {
+            const product = products.find(p => p.id === id);
+            const index = wishlist.findIndex(item => item.id === id);
 
-function saveState() {
-    localStorage.setItem('jq_cart', JSON.stringify(cart));
-    localStorage.setItem('jq_wishlist', JSON.stringify(wishlist));
-    updateBadges();
-    renderCart();
-    renderWishlist();
-}
+            if (index > -1) {
+                wishlist.splice(index, 1);
+                showToast(`${product.name} removed from Wishlist`);
+            } else {
+                wishlist.push(product);
+                showToast(`${product.name} added to Wishlist!`);
+            }
 
-function updateBadges() {
-    document.getElementById('cartCount').textContent = cart.reduce((acc, item) => acc + item.quantity, 0);
-    document.getElementById('wishlistCount').textContent = wishlist.length;
-}
+            saveState();
+            // Re-render to update heart icons
+            renderFeatured();
+            renderProducts('all');
+        }
 
-// --- CART & WISHLIST VIEWS RENDER ---
-function renderCart() {
-    const container = document.getElementById('cartContainer');
-    if(cart.length === 0) {
-        container.innerHTML = '<p style="text-align:center; color:#888;">Your bag is empty.</p>';
-        document.getElementById('cartTotal').textContent = '0';
-        return;
-    }
+        function removeFromCart(id) {
+            cart = cart.filter(item => item.id !== id);
+            saveState();
+        }
 
-    let total = 0;
-    container.innerHTML = cart.map(item => {
-        total += item.price * item.quantity;
-        return `
+        function removeWishlist(id) {
+            wishlist = wishlist.filter(item => item.id !== id);
+            saveState();
+            renderFeatured();
+            renderProducts('all');
+        }
+
+        function saveState() {
+            localStorage.setItem('jq_cart', JSON.stringify(cart));
+            localStorage.setItem('jq_wishlist', JSON.stringify(wishlist));
+            updateBadges();
+            renderCart();
+            renderWishlist();
+        }
+
+        function updateBadges() {
+            document.getElementById('cartCount').textContent = cart.reduce((acc, item) => acc + item.quantity, 0);
+            document.getElementById('wishlistCount').textContent = wishlist.length;
+        }
+
+        // --- CART & WISHLIST VIEWS RENDER ---
+        function renderCart() {
+            const container = document.getElementById('cartContainer');
+            if (cart.length === 0) {
+                container.innerHTML = '<p style="text-align:center; color:#888;">Your bag is empty.</p>';
+                document.getElementById('cartTotal').textContent = '0';
+                return;
+            }
+
+            let total = 0;
+            container.innerHTML = cart.map(item => {
+                total += item.price * item.quantity;
+                return `
             <div class="list-item">
                <img src="${item.img}" alt="${item.name}" 
      onclick="goToProduct(${item.id})"
@@ -946,19 +1013,19 @@ function renderCart() {
                 <button class="remove-btn" onclick="removeFromCart(${item.id})"><i class="fas fa-trash"></i></button>
             </div>
         `;
-    }).join('');
-    
-    document.getElementById('cartTotal').textContent = total;
-}
+            }).join('');
 
-function renderWishlist() {
-    const container = document.getElementById('wishlistContainer');
-    if(wishlist.length === 0) {
-        container.innerHTML = '<p style="text-align:center; color:#888;">Your wishlist is empty.</p>';
-        return;
-    }
+            document.getElementById('cartTotal').textContent = total;
+        }
 
-    container.innerHTML = wishlist.map(item => `
+        function renderWishlist() {
+            const container = document.getElementById('wishlistContainer');
+            if (wishlist.length === 0) {
+                container.innerHTML = '<p style="text-align:center; color:#888;">Your wishlist is empty.</p>';
+                return;
+            }
+
+            container.innerHTML = wishlist.map(item => `
         <div class="list-item">
             <img src="${item.img}" alt="${item.name}">
             <div class="item-details">
@@ -969,49 +1036,49 @@ function renderWishlist() {
             <button class="remove-btn" style="margin-left:15px;" onclick="removeWishlist(${item.id})"><i class="fas fa-times"></i></button>
         </div>
     `).join('');
-}
-
-function sendWhatsAppOrder(e) {
-    e.preventDefault();
-
-    const name = document.getElementById("customerName").value;
-    const phone = document.getElementById("customerPhone").value;
-    const pincode = document.getElementById("customerPincode").value;
-    const address = document.getElementById("customerAddress").value;
-
-    let orderDetails = "";
-    let total = 0;
-
-    // BUY NOW ORDER
-    if (buyNowProduct) {
-
-        orderDetails =
-            `${buyNowProduct.name} x 1 - ₹${buyNowProduct.price}%0A`;
-
-        total = buyNowProduct.price;
-
-    }
-
-    // CART ORDER
-    else {
-
-        if (cart.length === 0) {
-            alert("Please add products to cart first.");
-            return;
         }
 
-        cart.forEach(item => {
-            orderDetails +=
-                `${item.name} x ${item.quantity} - ₹${item.price * item.quantity}%0A`;
+        function sendWhatsAppOrder(e) {
+            e.preventDefault();
 
-            total += item.price * item.quantity;
-        });
-    }
+            const name = document.getElementById("customerName").value;
+            const phone = document.getElementById("customerPhone").value;
+            const pincode = document.getElementById("customerPincode").value;
+            const address = document.getElementById("customerAddress").value;
 
-    const whatsappNumber = "919352539305";
+            let orderDetails = "";
+            let total = 0;
 
-    const message =
-`*NEW ORDER*%0A%0A
+            // BUY NOW ORDER
+            if (buyNowProduct) {
+
+                orderDetails =
+                    `${buyNowProduct.name} x 1 - ₹${buyNowProduct.price}%0A`;
+
+                total = buyNowProduct.price;
+
+            }
+
+            // CART ORDER
+            else {
+
+                if (cart.length === 0) {
+                    alert("Please add products to cart first.");
+                    return;
+                }
+
+                cart.forEach(item => {
+                    orderDetails +=
+                        `${item.name} x ${item.quantity} - ₹${item.price * item.quantity}%0A`;
+
+                    total += item.price * item.quantity;
+                });
+            }
+
+            const whatsappNumber = "919352539305";
+
+            const message =
+                `*NEW ORDER*%0A%0A
 Name: ${name}%0A
 Phone: ${phone}%0A
 PIN Code: ${pincode}%0A
@@ -1020,138 +1087,139 @@ Address: ${address}%0A%0A
 ${orderDetails}%0A
 *Total:* ₹${total}`;
 
-    window.open(
-        `https://wa.me/${whatsappNumber}?text=${message}`,
-        "_blank"
-    );
+            window.open(
+                `https://wa.me/${whatsappNumber}?text=${message}`,
+                "_blank"
+            );
 
-    // Reset Buy Now after order
-    buyNowProduct = null;
-}
-
-// --- QUICK VIEW MODAL & ZOOM LOGIC ---
-function openModal(id) {
-    const product = products.find(p => p.id === id);
-    const modalImg = document.getElementById('modalImg');
-    
-    // Reset zoom before opening
-    resetZoom();
-    modalImg.src = product.img;
-    
-    document.getElementById('modalTitle').textContent = product.name;
-    document.getElementById('modalPrice').textContent = `₹${product.price}`;
-    document.getElementById('modalAddToCart').onclick = () => {
-        addToCart(id);
-        closeModal();
-    };
-    document.getElementById('quickViewModal').style.display = 'flex';
-}
-
-function closeModal() {
-    document.getElementById('quickViewModal').style.display = 'none';
-}
-
-// Master function to handle position calculation for both desktop and mobile
-function handleZoomPan(clientX, clientY) {
-    const wrapper = document.getElementById('zoomWrapper');
-    const img = document.getElementById('modalImg');
-    const rect = wrapper.getBoundingClientRect();
-    
-    const x = clientX - rect.left; 
-    const y = clientY - rect.top;  
-    
-    let xPercent = (x / rect.width) * 100;
-    let yPercent = (y / rect.height) * 100;
-    
-    // Safety guard to keep coordinates within the image bounds
-    if (xPercent < 0) xPercent = 0;
-    if (xPercent > 100) xPercent = 100;
-    if (yPercent < 0) yPercent = 0;
-    if (yPercent > 100) yPercent = 100;
-    
-    img.style.transformOrigin = `${xPercent}% ${yPercent}%`;
-}
-
-// Desktop mouse tracking
-function zoomImage(e) {
-    handleZoomPan(e.clientX, e.clientY);
-}
-
-// Mobile touch tracking
-function startTouchZoom(e) {
-    const img = document.getElementById('modalImg');
-    img.classList.add('zoomed'); // Forces image scaling on mobile
-    handleZoomPan(e.touches[0].clientX, e.touches[0].clientY);
-}
-
-function moveTouchZoom(e) {
-    if (e.touches.length > 0) {
-        handleZoomPan(e.touches[0].clientX, e.touches[0].clientY);
-    }
-}
-
-// Resets zoom completely for both platforms
-function resetZoom() {
-    const img = document.getElementById('modalImg');
-    img.classList.remove('zoomed');
-    img.style.transformOrigin = 'center center';
-}
-
-// Close modal if clicked outside
-document.getElementById('quickViewModal').addEventListener('click', (e) => {
-    if(e.target === document.getElementById('quickViewModal')) closeModal();
-});
-
-// --- UTILS ---
-function showToast(msg) {
-    const toast = document.getElementById('toast');
-    toast.textContent = msg;
-    toast.classList.add('show');
-    setTimeout(() => toast.classList.remove('show'), 3000);
-}
-
-function handleContact(e) {
-    e.preventDefault();
-    showToast("Message sent successfully! We will contact you soon.");
-    e.target.reset();
-}
-
-function increaseQty(id){
-    const item = cart.find(product => product.id === id);
-    if(item){
-        item.quantity++;
-        saveState();
-    }
-}
-
-function decreaseQty(id){
-    const item = cart.find(product => product.id === id);
-    if(item){
-        item.quantity--;
-        if(item.quantity <= 0){
-            cart = cart.filter(product => product.id !== id);
+            // Reset Buy Now after order
+            buyNowProduct = null;
         }
-        saveState();
-    }
-}
 
-function goToProduct(id) {
-    switchView('shop');
-    setTimeout(() => {
-        const productCard = document.getElementById(`product-${id}`);
-        if(productCard){
-            productCard.scrollIntoView({
-                behavior: "smooth",
-                block: "center"
-            });
-            productCard.style.boxShadow = "0 0 25px #B08D57";
+        // --- QUICK VIEW MODAL & ZOOM LOGIC ---
+        function openModal(id) {
+            const product = products.find(p => p.id === id);
+            const modalImg = document.getElementById('modalImg');
+
+            // Reset zoom before opening
+            resetZoom();
+            modalImg.src = product.img;
+
+            document.getElementById('modalTitle').textContent = product.name;
+            document.getElementById('modalPrice').textContent = `₹${product.price}`;
+            document.getElementById('modalAddToCart').onclick = () => {
+                addToCart(id);
+                closeModal();
+            };
+            document.getElementById('quickViewModal').style.display = 'flex';
+        }
+
+        function closeModal() {
+            document.getElementById('quickViewModal').style.display = 'none';
+        }
+
+        // Master function to handle position calculation for both desktop and mobile
+        function handleZoomPan(clientX, clientY) {
+            const wrapper = document.getElementById('zoomWrapper');
+            const img = document.getElementById('modalImg');
+            const rect = wrapper.getBoundingClientRect();
+
+            const x = clientX - rect.left;
+            const y = clientY - rect.top;
+
+            let xPercent = (x / rect.width) * 100;
+            let yPercent = (y / rect.height) * 100;
+
+            // Safety guard to keep coordinates within the image bounds
+            if (xPercent < 0) xPercent = 0;
+            if (xPercent > 100) xPercent = 100;
+            if (yPercent < 0) yPercent = 0;
+            if (yPercent > 100) yPercent = 100;
+
+            img.style.transformOrigin = `${xPercent}% ${yPercent}%`;
+        }
+
+        // Desktop mouse tracking
+        function zoomImage(e) {
+            handleZoomPan(e.clientX, e.clientY);
+        }
+
+        // Mobile touch tracking
+        function startTouchZoom(e) {
+            const img = document.getElementById('modalImg');
+            img.classList.add('zoomed'); // Forces image scaling on mobile
+            handleZoomPan(e.touches[0].clientX, e.touches[0].clientY);
+        }
+
+        function moveTouchZoom(e) {
+            if (e.touches.length > 0) {
+                handleZoomPan(e.touches[0].clientX, e.touches[0].clientY);
+            }
+        }
+
+        // Resets zoom completely for both platforms
+        function resetZoom() {
+            const img = document.getElementById('modalImg');
+            img.classList.remove('zoomed');
+            img.style.transformOrigin = 'center center';
+        }
+
+        // Close modal if clicked outside
+        document.getElementById('quickViewModal').addEventListener('click', (e) => {
+            if (e.target === document.getElementById('quickViewModal')) closeModal();
+        });
+
+        // --- UTILS ---
+        function showToast(msg) {
+            const toast = document.getElementById('toast');
+            toast.textContent = msg;
+            toast.classList.add('show');
+            setTimeout(() => toast.classList.remove('show'), 3000);
+        }
+
+        function handleContact(e) {
+            e.preventDefault();
+            showToast("Message sent successfully! We will contact you soon.");
+            e.target.reset();
+        }
+
+        function increaseQty(id) {
+            const item = cart.find(product => product.id === id);
+            if (item) {
+                item.quantity++;
+                saveState();
+            }
+        }
+
+        function decreaseQty(id) {
+            const item = cart.find(product => product.id === id);
+            if (item) {
+                item.quantity--;
+                if (item.quantity <= 0) {
+                    cart = cart.filter(product => product.id !== id);
+                }
+                saveState();
+            }
+        }
+
+        function goToProduct(id) {
+            switchView('shop');
             setTimeout(() => {
-                productCard.style.boxShadow = "";
-            }, 2500);
+                const productCard = document.getElementById(`product-${id}`);
+                if (productCard) {
+                    productCard.scrollIntoView({
+                        behavior: "smooth",
+                        block: "center"
+                    });
+                    productCard.style.boxShadow = "0 0 25px #B08D57";
+                    setTimeout(() => {
+                        productCard.style.boxShadow = "";
+                    }, 2500);
+                }
+            }, 300);
         }
-    }, 300);
-}
-</script>
+    </script>
 
 </body>
+
 </html>
