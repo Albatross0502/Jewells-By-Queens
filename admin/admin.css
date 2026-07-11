@@ -1,0 +1,12 @@
+* { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Poppins', sans-serif; }
+body { background: #F8F4ED; color: #333; padding: 40px; }
+.container { max-width: 900px; margin: 0 auto; background: white; padding: 30px; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
+h1, h2 { color: #6B4423; margin-bottom: 20px; text-align: center; }
+.form-group { margin-bottom: 15px; }
+.form-group input, .form-group select { width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px; }
+.btn { display: inline-block; padding: 10px 20px; background: #B08D57; color: white; border: none; border-radius: 5px; cursor: pointer; }
+.btn:hover { background: #6B4423; }
+.product-list { margin-top: 30px; display: grid; gap: 15px; }
+.product-item { display: flex; justify-content: space-between; align-items: center; padding: 15px; background: #f9f9f9; border-radius: 5px; }
+.product-item img { width: 50px; height: 50px; object-fit: cover; border-radius: 5px; margin-right: 15px; }
+.del-btn { background: #e74c3c; padding: 5px 10px; }

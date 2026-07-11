@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="admin.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Dashboard - Manage Products</h1>
+        
+        <form id="addProductForm">
+            <div class="form-group">
+                <input type="text" id="name" placeholder="Product Name" required>
+            </div>
+            <div class="form-group">
+                <input type="number" id="price" placeholder="Price (₹)" required>
+            </div>
+            <div class="form-group">
+                <select id="category" required>
+                    <option value="ring">Ring</option>
+                    <option value="pendant">Pendant Set</option>
+                    <option value="earring">Earring</option>
+                    <option value="bangle">Bangle</option>
+                    <option value="set">Bridal Set</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <input type="file" id="image" accept="image/*" required>
+            </div>
+            <button type="submit" class="btn">Add Product</button>
+        </form>
+
+        <h2 style="margin-top: 40px;">Current Products</h2>
+        <div id="productList" class="product-list"></div>
+    </div>
+    <script src="admin.js"></script>
+    <script>
+        // Protect dashboard route
+        if(localStorage.getItem('adminAuth') !== 'true') {
+            window.location.href = 'login.html';
+        }
+    </script>
+</body>
+</html>
